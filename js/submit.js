@@ -63,7 +63,7 @@ async function handleSubmit(e) {
       uploadSelfie(memberId, selfieBlob),
     ]);
 
-    updateProgress('Building your Health Card…');
+    updateProgress('Building your membership card…');
     const cardEl = buildCardElement({
       fullName:      formData.fullName,
       memberId,
@@ -90,7 +90,7 @@ async function handleSubmit(e) {
     updateProgress('Generating PDF…');
     const pdfBlob = await generateCardPDF(cardEl);
 
-    updateProgress('Uploading Health Card…');
+    updateProgress('Uploading your card…');
     const cardPdfPath = await uploadCardPDF(memberId, pdfBlob);
 
     const cardDownloadUrl = await getSignedUrl(CONFIG.BUCKET_CARDS, cardPdfPath);

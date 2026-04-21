@@ -1,7 +1,7 @@
 /**
  * card-builder.js
- * Premium Health Membership Card builder
- * Designed to closely match the uploaded CF Health Card PDF
+ * Premium Membership Card builder
+ * Designed to closely match the uploaded membership card PDF
  * with a cleaner, more professional layout and branding.
  */
 
