@@ -511,6 +511,6 @@ textarea { resize: vertical; min-height: 80px; }
 
 /* Logo image sizing */
 .logo-img {
-  height: 64px;
+  height: 80px;
   width: auto;
 }
