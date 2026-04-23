@@ -45,8 +45,11 @@ function buildCardElement(memberData) {
   frontImg.style.width = "100%";
   frontImg.style.height = "100%";
   frontImg.style.objectFit = "cover";
-  frontImg.setAttribute("crossorigin", "anonymous");
-  frontImg.setAttribute("referrerpolicy", "no-referrer");
+  // Do not set crossOrigin or referrerPolicy on the template image.
+  // When the page is served from file:// or other static hosting,
+  // specifying crossOrigin may cause html2canvas to exclude the image
+  // due to CORS restrictions. By omitting these attributes the image
+  // is treated as same‑origin and captured correctly.
   front.appendChild(frontImg);
 
   // Overlay container for photo and text
@@ -60,8 +63,9 @@ function buildCardElement(memberData) {
     const img = document.createElement("img");
     img.src = safeSelfie;
     img.alt = safeName;
-    img.setAttribute("crossorigin", "anonymous");
-    img.setAttribute("referrerpolicy", "no-referrer");
+    // The member photo is loaded as a data URI, so there is no need to
+    // specify crossOrigin/referrerPolicy. Omitting these attributes
+    // avoids potential CORS issues when generating the PDF locally.
     photoBox.appendChild(img);
   } else {
     // Placeholder when no selfie is provided
@@ -102,8 +106,9 @@ function buildCardElement(memberData) {
   backImg.style.width = "100%";
   backImg.style.height = "100%";
   backImg.style.objectFit = "cover";
-  backImg.setAttribute("crossorigin", "anonymous");
-  backImg.setAttribute("referrerpolicy", "no-referrer");
+  // See the note above about crossOrigin/referrerPolicy. We avoid
+  // specifying these attributes on the back template so that
+  // html2canvas can capture the image when running from file://.
   back.appendChild(backImg);
 
   // Optional QR overlay if a target is provided

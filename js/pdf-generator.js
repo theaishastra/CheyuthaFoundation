@@ -46,6 +46,10 @@ async function generateCardPDF(cardWrapper) {
 
       const canvas = await html2canvas(cardEl, {
         scale: 2,
+        // With Google fonts removed and images hosted locally, we can
+        // enable CORS and disable tainting to produce an exportable
+        // canvas. This avoids the "Tainted canvases may not be exported"
+        // error when calling canvas.toDataURL().
         useCORS: true,
         allowTaint: false,
         backgroundColor: '#ffffff',
@@ -78,13 +82,15 @@ async function generateCardPDF(cardWrapper) {
     // Small footer text
     pdf.setFontSize(7);
     pdf.setTextColor(160, 160, 160);
-    
+    pdf.text('Cheyutha Foundation for Organ Transplants  |  www.cfotindia.org  |  Helpline: 8328605200', pageW / 2, pageH - 5, { align: 'center' });
+
     // Page 2: Back card
     pdf.addPage();
     const backImg = canvases[1].toDataURL('image/jpeg', 0.92);
     pdf.addImage(backImg, 'JPEG', margin, startY, cardW, cardH);
     pdf.setFontSize(7);
     pdf.setTextColor(160, 160, 160);
+    pdf.text('Cheyutha Foundation for Organ Transplants  |  www.cfotindia.org  |  Helpline: 8328605200', pageW / 2, pageH - 5, { align: 'center' });
 
     return pdf.output('blob');
 

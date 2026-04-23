@@ -23,8 +23,10 @@
   --shadow-sm:   0 1px 4px rgba(15,89,115,0.08);
   --shadow-md:   0 4px 20px rgba(15,89,115,0.12);
   --shadow-lg:   0 12px 40px rgba(15,89,115,0.18);
-  --font-body:   'Nunito', sans-serif;
-  --font-display:'Playfair Display', serif;
+  /* Use system fonts instead of external Google Fonts to avoid CORS issues
+     when capturing the card canvas for PDF generation. */
+  --font-body:   Arial, Helvetica, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -513,4 +515,33 @@ textarea { resize: vertical; min-height: 80px; }
 .logo-img {
   height: 80px;
   width: auto;
+}
+
+/* ---- Hero Partners ---- */
+.hero-partners {
+  margin-top: 20px;
+  color: var(--white);
+}
+
+.hero-partners h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.partner-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  justify-content: center;
+}
+
+.partner-list li {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
 }

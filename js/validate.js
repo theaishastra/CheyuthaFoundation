@@ -85,11 +85,9 @@ function validateForm() {
     errors.address = 'Please enter your complete address.';
   }
 
-  // 8. Aadhaar Photo
+  // 8. Aadhaar Photo (optional)
   const aadharInput = document.getElementById('aadharPhoto');
-  if (!aadharInput || !aadharInput.files || aadharInput.files.length === 0) {
-    errors.aadhar = 'Aadhaar photo is required.';
-  } else {
+  if (aadharInput && aadharInput.files && aadharInput.files.length > 0) {
     const file = aadharInput.files[0];
     if (file.size > 10 * 1024 * 1024) {
       errors.aadhar = 'Aadhaar photo must be under 10MB.';
@@ -100,14 +98,14 @@ function validateForm() {
     }
   }
 
-  // 9. Selfie Photo
+  // 9. Passport Photo
   const selfieInput = document.getElementById('selfiePhoto');
   if (!selfieInput || !selfieInput.files || selfieInput.files.length === 0) {
-    errors.selfie = 'Selfie photo is required.';
+    errors.selfie = 'Passport photo is required.';
   } else {
     const file = selfieInput.files[0];
     if (file.size > 10 * 1024 * 1024) {
-      errors.selfie = 'Selfie photo must be under 10MB.';
+      errors.selfie = 'Passport photo must be under 10MB.';
     }
     const allowed = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowed.includes(file.type)) {

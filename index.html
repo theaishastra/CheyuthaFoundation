@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cheyutha Foundation – Health Card Registration</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <!-- Removed Google Fonts to prevent CORS issues when rendering the card to a canvas.
+       System fonts will be used instead. -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/card.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -28,11 +28,21 @@
     <div class="hero-content">
       <div class="hero-badge">Membership Card Registration</div>
       <h1>Register for Your <span class="highlight">Membership Card</span></h1>
-      <!-- <p>Get up to <strong>20% discount</strong> on medical services. The card can be used by any one member of your family for healthcare benefits. Fill in your details below to secure your health card and enjoy affordable treatment.</p> -->
-      <p>Our <strong>Membership Card </strong> offers Single Point of Contact for kidney patients who guides you at every stage. Members receive Doctor & Hospital Assistance, Diagnostic & Lab Support, and access to Affordable Medicines. We also provide Insurance & Financial Guidance along with Diet & Lifestyle Counseling. Members can connect with a Strong Patient Support Community and get access to Exclusive Programs & Priority Services, along with special discounts on healthcare services—ensuring continuous care and support throughout your journey.</p>
-      <div class="hero-stats">
-        <div class="stat"><strong>20%</strong><span>Discount</span></div>
-        <div class="stat"><strong>8+</strong><span>Benefits</span></div>
+      <p>Our Membership Card offers Single Point of Contact for kidney patients who guides you at every stage. Members receive Doctor &amp; Hospital Assistance, Diagnostic &amp; Lab Support, and access to Affordable Medicines. We also provide Insurance &amp; Financial Guidance along with Diet &amp; Lifestyle Counseling. Members can connect with a Strong Patient Support Community and get access to Exclusive Programs &amp; Priority Services, along with special discounts on healthcare services—ensuring continuous care and support throughout your journey.</p>
+      <div class="hero-partners">
+        <h3>Our partners</h3>
+        <ul class="partner-list">
+          <li>Vijaya Diagnostics</li>
+          <li>NexusCare Lab</li>
+          <li>5Senses</li>
+          <li>Graft Care Pharma</li>
+          <li>Kidney Warriors Foundation</li>
+          <li>New India Insurance</li>
+          <li>nivaBhupa Insurance</li>
+          <li>Care Insurance</li>
+          <li>Hdfc Ergo</li>
+          <li>Major Hospitals In Hyderabad</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -118,12 +128,12 @@
           <div class="section-title"><span class="section-num">3</span> Photo Documents</div>
           <div class="form-row upload-row">
             <div class="form-group upload-group">
-              <label>Aadhaar Photo <!--<span class="req">*</span> --> </label>
+              <label>Aadhaar Photo (optional)</label>
               <div class="upload-box" id="aadharUploadBox">
-                <input type="file" id="aadharPhoto" name="aadharPhoto"  class="file-input" />
+                <input type="file" id="aadharPhoto" name="aadharPhoto" accept="image/*" class="file-input" />
                 <div class="upload-placeholder" id="aadharPlaceholder">
                   <div class="upload-icon">🪪</div>
-                  <div class="upload-text">Click or tap to upload Aadhaar</div>
+                  <div class="upload-text">Click or tap to upload Aadhaar (optional)</div>
                   <div class="upload-hint">JPG, PNG – max 5MB</div>
                 </div>
                 <img id="aadharPreview" class="upload-preview" alt="Aadhaar preview" />
@@ -136,10 +146,10 @@
                 <input type="file" id="selfiePhoto" name="selfiePhoto" accept="image/*" class="file-input" />
                 <div class="upload-placeholder" id="selfiePlaceholder">
                   <div class="upload-icon">🤳</div>
-                  <div class="upload-text">Click or tap to upload Selfie</div>
+                  <div class="upload-text">Click or tap to upload Passport</div>
                   <div class="upload-hint">JPG, PNG – max 5MB</div>
                 </div>
-                <img id="selfiePreview" class="upload-preview" alt="Selfie preview" />
+                <img id="selfiePreview" class="upload-preview" alt="Passport preview" />
               </div>
               <span class="error-msg" id="err-selfie"></span>
             </div>
