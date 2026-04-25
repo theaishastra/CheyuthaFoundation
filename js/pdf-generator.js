@@ -82,7 +82,7 @@ async function generateCardPDF(cardWrapper) {
     // Small footer text
     pdf.setFontSize(7);
     pdf.setTextColor(160, 160, 160);
-    pdf.text('Cheyutha Foundation for Organ Transplants  |  www.cfotindia.org  |  Helpline: 8328605200', pageW / 2, pageH - 5, { align: 'center' });
+    
 
     // Page 2: Back card
     pdf.addPage();
@@ -90,8 +90,7 @@ async function generateCardPDF(cardWrapper) {
     pdf.addImage(backImg, 'JPEG', margin, startY, cardW, cardH);
     pdf.setFontSize(7);
     pdf.setTextColor(160, 160, 160);
-    pdf.text('Cheyutha Foundation for Organ Transplants  |  www.cfotindia.org  |  Helpline: 8328605200', pageW / 2, pageH - 5, { align: 'center' });
-
+    
     return pdf.output('blob');
 
   } finally {
