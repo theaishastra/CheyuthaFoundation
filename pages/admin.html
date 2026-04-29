@@ -551,6 +551,7 @@ let filteredRows = [];
 let currentPage  = 1;
 const PER_PAGE   = 20;
 let searchTimer;
+const memberMap  = {}; // id → member object for safe edit lookup
 
 // ── INIT ────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
@@ -596,6 +597,7 @@ async function loadMembers() {
     if (error) throw error;
 
     allMembers   = data || [];
+    allMembers.forEach(m => memberMap[m.id] = m);
     currentPage  = 1;
     applySearch();
     updateStats();
@@ -663,7 +665,7 @@ function renderTable() {
       <td style="color:var(--muted);font-size:.78rem">${fmtDate(m.created_at)}</td>
       <td>
         <div class="actions">
-          <button class="btn-action btn-edit"   title="Edit"   onclick="openEdit(${JSON.stringify(JSON.stringify(m))})"><i class="fas fa-pen"></i></button>
+          <button class="btn-action btn-edit"   title="Edit"   data-id="${m.id}" onclick="openEdit(this.dataset.id)"><i class="fas fa-pen"></i></button>
           <button class="btn-action btn-delete" title="Delete" onclick="openDelete('${m.id}')"><i class="fas fa-trash"></i></button>
         </div>
       </td>
@@ -754,8 +756,9 @@ async function openCard(path) {
 }
 
 // ── EDIT ─────────────────────────────────────────
-function openEdit(jsonStr) {
-  const m = JSON.parse(jsonStr);
+function openEdit(id) {
+  const m = memberMap[id];
+  if (!m) { showToast('Member not found', 'error'); return; }
   document.getElementById('editId').value       = m.id;
   document.getElementById('editName').value     = m.full_name || '';
   document.getElementById('editGender').value   = m.gender    || 'Male';
